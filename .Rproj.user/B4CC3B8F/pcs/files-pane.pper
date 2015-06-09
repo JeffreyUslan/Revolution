@@ -1,0 +1,9 @@
+{
+    "path" : "~/Revolution",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

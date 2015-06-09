@@ -1,0 +1,17 @@
+{
+    "contents" : "library(\"devtools\")\ninstall.packages(c(\"Rcpp\",\"RJSONIO\",\"bitops\",\"digest\",\n                   \"functional\",\"reshape2\",\"stringr\",\n                   \"plyr\",\"caTools\"))\n# https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads\ninstall.packages(\"C:/Users/Jeffrey/Downloads/rmr2_3.3.1.zip\", repos = NULL,type=\"binary\")\nlibrary(rmr2)\nrmr.options(backend=\"local\")\ninstall.packages(\"C:/Users/Jeffrey/Downloads/rhdfs_1.0.8.zip\", repos = NULL,type=\"binary\")\nSys.setenv(\"HADOOP_CMD\"=\"/usr/local/hadoop/bin/hadoop\")\nSys.setenv(\"HADOOP_STREAMING\"=\"/usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.4.0.jar\")\n\nlibrary(rhdfs)\n# install.packages(\"C:/Users/Jeffrey/Downloads/rhbase_1.2.1.tar.gz\", repos = NULL, type = \"source\")\n# library(rhbase)\n# install.packages(\"C:/Users/Jeffrey/Downloads/plyrmr_0.6.0.tar.gz\", repos = NULL, type = \"source\")\n# library(plyrmyr)\n# install.packages(\"C:/Users/Jeffrey/Downloads/ravro_1.0.4.tar.gz\", repos = NULL, type = \"source\")\n# library(ravro)\n\n\n",
+    "created" : 1433481497971.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "474954619",
+    "id" : "7182AFB3",
+    "lastKnownWriteTime" : 1433792261,
+    "path" : "~/Revolution/package_installs.R",
+    "project_path" : "package_installs.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
