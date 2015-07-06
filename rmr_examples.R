@@ -11,8 +11,8 @@ cbind(small.ints,sapply(small.ints, function(x) x^2))
 small.ints = to.dfs(1:1000)
 from.dfs(
   mapreduce(
-  input = small.ints, 
-  map = function(k, v) cbind(v, v^2)
+    input = small.ints, 
+    map = function(k, v) cbind(v, v^2)
   )
 )
 
@@ -30,13 +30,13 @@ groups = to.dfs(groups)
 ## reduce: count the number of observations in each group
 ## then, retrieve it from Hadoop filesystem
 output = from.dfs(
-                  mapreduce(input = groups, 
-                            map = function(., v) 
-                                keyval(v, 1), 
-                            reduce = function(k, vv)  
-                                keyval(k, length(vv))
-                   )
-                  )
+  mapreduce(input = groups, 
+            map = function(., v) 
+              keyval(v, 1), 
+            reduce = function(k, vv)  
+              keyval(k, length(vv))
+  )
+)
 # print results
 ## keys: group IDs
 ## values: results of reduce job (<em>i.e.</em>, frequency)
@@ -58,23 +58,23 @@ romeo_and_juliet=as.character(sapply(romeo_and_juliet,tolower))
 
 #function that encapsulates the job
 #     Maps what a word is
-    wc.map =  function(k, lines) {
-        words.list=strsplit(x = lines,split = " ")
-        words=unlist(words.list)
-        keyval(words, 1)}
+wc.map =  function(k, lines) {
+  words.list=strsplit(x = lines,split = " ")
+  words=unlist(words.list)
+  keyval(words, 1)}
 #The reducing function to count the words
-    wc.reduce = function(words, counts ) {
-        keyval(words, sum(counts))}
+wc.reduce = function(words, counts ) {
+  keyval(words, sum(counts))}
 # combine the map function and the reduce function
- wordcount=function(input,output=NULL){
-    mapreduce(
-      input = input,
-      output = output,
-
-      map = wc.map,
-      reduce = wc.reduce,
-      combine = TRUE)
-    #       input.format = "text",
+wordcount=function(input,output=NULL){
+  mapreduce(
+    input = input,
+    output = output,
+    
+    map = wc.map,
+    reduce = wc.reduce,
+    combine = TRUE)
+  #       input.format = "text",
 }
 
 
@@ -85,6 +85,168 @@ lengths=sapply(t[,1],nchar)
 t=t[which(lengths>4),]
 ord=order(t$val,decreasing=TRUE)
 t[ord,][1:50,]
+
+# Logistic Regression
+library(rmr2)
+
+logistic.regression = 
+  function(input, iterations, dims, alpha){
+    
+    ## Map function- makes a subset grid
+    lr.map =  function(., M) {
+      Y = M[,1] 
+      X = M[,-1]
+      keyval(
+        1,
+        Y * X * 
+          g(-Y * as.numeric(X %*% t(plane))))
+    }
+    ## Reduce Function sum the dubset grids contribution
+    lr.reduce = function(k, Z) {
+      keyval(k, t(as.matrix(apply(Z,2,sum))))
+    }
+    
+    
+    ## Sigmoid Function
+    g = function(z) {
+      1/(1 + exp(-z))
+    }
+    #A vector to hold coefficients
+    plane = t(rep(0, dims))
+    
+    #Iterating 
+    for (i in 1:iterations) {
+      gradient = 
+        values(
+          from.dfs(
+            mapreduce(
+              input,
+              map = lr.map,     
+              reduce = lr.reduce,
+              combine = TRUE)))
+      plane = plane + alpha * gradient }
+    plane }
+
+test.size = 10^5
+eps = rnorm(test.size)
+testdata = 
+  to.dfs(
+    as.matrix(
+      data.frame(
+        y = 2 * (eps > 0) - 1,
+        x1 = 1:test.size, 
+        x2 = 1:test.size + eps)))
+
+logistic.regression(testdata, 3, 2, 0.05)
+
+## K-means
+#A wrapper function
+kmeans.mr = 
+  function(
+    P, 
+    num.clusters, 
+    num.iter, 
+    combine, 
+    in.memory.combine) {
+    #Calculate the distances
+    dist.fun = 
+      function(C, P) {
+        apply(
+          C,
+          1, 
+          function(x) 
+            colSums((t(P) - x)^2))}
+    # Map function, samples different chunks of data
+    kmeans.map = 
+      function(., P) {
+        nearest = {
+          if(is.null(C)) 
+            sample(
+              1:num.clusters, 
+              nrow(P), 
+              replace = TRUE)
+          else {
+            D = dist.fun(C, P)
+            nearest = max.col(-D)}}
+        if(!(combine || in.memory.combine))
+          keyval(nearest, P) 
+        else 
+          keyval(nearest, cbind(1, P))}
+    
+    
+    # Reduce function, accumulates distances from map function
+    kmeans.reduce = {
+      if (!(combine || in.memory.combine) ) 
+        function(., P) 
+          t(as.matrix(apply(P, 2, mean)))
+      else 
+        function(k, P) 
+          keyval(
+            k, 
+            t(as.matrix(apply(P, 2, sum))))}
+    
+    # Iterating function
+    C = NULL
+    for(i in 1:num.iter ) {
+      C = 
+        values(
+          from.dfs(
+            mapreduce(
+              P, 
+              map = kmeans.map,
+              reduce = kmeans.reduce)))
+      if(combine || in.memory.combine)
+        C = C[, -1]/C[, 1]
+      
+      if(nrow(C) < num.clusters) {
+        C = 
+          rbind(
+            C,
+            matrix(
+              rnorm(
+                (num.clusters - 
+                   nrow(C)) * nrow(C)), 
+              ncol = nrow(C)) %*% C) }}
+    C}
+
+#Creating example
+set.seed(3)
+P = 
+  do.call(
+    rbind, 
+    rep(
+      list(
+        matrix(
+          rnorm(10, sd = 10), 
+          ncol=2)), 
+      20)) + 
+  matrix(rnorm(200), ncol =2)
+
+plot(P)
+outcome=    kmeans.mr(
+  to.dfs(P),
+  num.clusters = 4, 
+  num.iter = 5,
+  combine = FALSE,
+  in.memory.combine = FALSE)
+
+#compare mapreduce to kmeans function
+clust_ind=apply(P,1,function(x){
+  sub_dist=apply(outcome,1,function(y){
+    sqrt((y[1]-x[1])^2+(y[2]-x[2])^2)
+  })
+  which(sub_dist==min(sub_dist))
+})
+P=as.data.frame(P)
+P[,3]=clust_ind
+
+
+k=kmeans(as.matrix(P[,1:2]),4)
+P[,4]=k$cluster
+table(P$V3,P$V4)
+library(ggplot2)
+ggplot(P)+geom_point(aes(x=V1,y=V2),colour=P[,3])
+ggplot(P)+geom_point(aes(x=V1,y=V2),colour=P[,4])
 
 ##Linear Least Squares
 

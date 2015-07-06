@@ -1,0 +1,90 @@
+BS/BA degree in Computer Science, Mathematics, Statistics or equivalent education and experience required
+4+ years hands-on experience implementing large scale data analytics solutions
+Extensive programming skills in the Hadoop environment (Map/Reduce, Pig, Hive, HBase, Mahout)
+Fluent with experimental design (DOE)
+Fluency with statistical and machine learning algorithms such as decision trees, neural networks, collaborative filtering, clustering, survival analysis, graph theory, etc.
+Knowledge in cloud and engineering platform solutions such as AWS
+Knowledge of visualization tools such as Tableau, d3.js
+Knowledge of analysis tools such as Python, SAS, R, or Matlab
+Curiosity and excitement for delivering truly unique and differentiating customer experiences
+Experience in retail, ecommerce, or digital advertising a plus
+Five years of experience in advanced quantitative/statistical modeling and optimization techniques.
+Five years of experience working across organizations in various groups to drive business solutions through quantitative analysis with Hadoop, Excel, SQL, R, and Tableau.
+Alternative experience requirement: Masters Plus two years in each of the above.
+High school diploma or equivalent. Certification requirement may be waived with verifiable on the job training and experience. Possess understanding of statistics. Understand conceptual & practical marketing and business operations. Enthusiasm for learning the practical application of statistical analysis to address business issues. Detail oriented with excellent analytical and problem solving skills. Strong communication skills. Must be able to effectively manage time and a variety of responsibilities. MS Office proficiency required. SPSS / SAS skills preferred. 0 2 years of marketing research experience. New program graduates will be considered.
+1 year of experience in an Analyst role
+Degree in a quantitative field such as Finance, Economics, Mathematics, or Statistics
+Strong experience with Microsoft Excel: ability to do pivot tables, v-lookups, logical and nested formulas
+Ability to work in a dynamic environment while managing multiple projects
+Minimum of a master’s degree, with PhD preferred, in applied mathematics, statistics, quantitative social science or similar field of study. Strong statistics background highly desired.
+Ability to read & write code in a language like R or Matlab
+Experience in managing and organizing large data sets is a plus
+Modeling experience or knowledge of epidemiology is a plus
+Knowledge of public health issues in the developing world settings is a plus
+Must work well in a team
+Must be a clear and effective communicator
+Must be self-motivated and results-minded
+Must have strong analytical skills
+4+ years experience doing quantitative analysis.
+BA/BS in Computer Science, Math, Physics, Engineering, Statistics or other technical field. Advanced degrees preferred.
+Fluency in SQL or other programming languages. Some development experience in at least one scripting language (PHP, Python, Perl, etc.)
+Ability to initiate and drive projects to completion with minimal guidance
+The ability to communicate the results of analyses in a clear and effective manner
+Basic understanding of statistical analysis.
+Preferred experience with a statistical package such as R, MATLAB, SPSS, SAS, Stata, etc.
+Preferred experience with an Internet-based company.
+Experience with large data sets and distributed computing (Hive/Hadoop) a plus.
+Writing code: Production level coding experience is required
+Machine Learning and Statistics 
+Data Munging/Wrangling 
+Experimental Design
+Systems Architecture
+
+
+Strong background in statistics & experience in exploratory data analysis
+Experience creating models/analysis using machine learning techniques such as
+regression,clustering, association rules, sequential pattern matching, etc.
+Proficient at query and manipulating data using a number of tools and languages
+(SQL, R, Python, Hive, Scala, Java, etc.)
+Proficient in algorithms and data structures related to data manipulation and Big Data
+Capable of presenting and communicating results of research
+Experience in data integration and modeling is required
+Experience working with big data technologies is a plus (Hadoop, Spark, etc.)
+Experience in fraud detection and/or text mining is a plus
+An educational background in a quantitative field
+(e.g., Mathematics, Statistics, ComputerScience, etc.)
+3+ years of experience working in an analytical roleSuccessful candidates should possess
+
+A BS, MS, or PhD in Computer Science, Mathematics, Statistics, Physics, Computer Engineering, Electrical Engineering, Data Science, Information Systems, or related technical field
+Worked as quantitative analyst, business analyst, data scientist or data driven management consultant.
+Experience with R/python programming.
+Have used packages like scikit-learn/pandas,numpy
+Experience  with SQL including query optimisation
+An understanding of “the cloud”, experience with AWS.
+A working knowledge of Linux
+Experience using GitHub or other version control frameworks.
+Great communication skills
+3-5 years of advanced quantitative experience, ideally in an Internet company
+Expertise in quantitative programming packages and languages – like R & Python -- as well SQL
+Demonstrated experience with advanced Machine Learning & Data mining algorithms like Classifiers, Logistic regression / SVM, Clustering methods, Bayesian methods, Collaborative filtering, NLP etc.
+Masters in a quantitative field (e.g. Statistics, Maths, Economics)
+Familiarity with Big Data and Relational Database systems
+Experience working with clickstream data
+Extremely strong business judgment and analysis skills
+Strong communication skills
+Excellent communicator: able to clearly explain complex concepts in ambiguous setting
+
+Quantitative Master's degree (Mathematics, Computer Science, Engineering, Statistics, etc.)
+5+ years experience as a Product Analyst or relevant role
+Highly proficient in SQL
+Highly proficient in statistics (with strong expertise in machine learning)
+Knowledge of R, Python or similar
+Ability to communicate complex quantitative analyses in a clear, precise and actionable manners to audiences as varied as data scientists and executives
+Independent, investigative mindset. Demonstrate ability to complete analytics projects with minimal direction
+
+Apply your expertise in quantitative analysis and data mining to identify trends and new opportunities
+Develop best practices for product instrumentation and experimentation, and communicate those to product and engineering teams
+Work closely with product teams to drive product innovation through actionable analytics
+Answer product questions by using appropriate statistical techniques on available data
+Analyze and interpret the results of product experiments and A/B testing
+Drive the collection of new data and the refinement of existing data sources

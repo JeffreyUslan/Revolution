@@ -3,10 +3,10 @@ install.packages(c("Rcpp","RJSONIO","bitops","digest",
                    "functional","reshape2","stringr",
                    "plyr","caTools"))
 # https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads
-install.packages("C:/Users/Jeffrey/Downloads/rmr2_3.3.1.zip", repos = NULL,type="binary")
+install.packages("./rmr2_3.3.1.zip", repos = NULL,type="binary")
 library(rmr2)
 rmr.options(backend="local")
-install.packages("C:/Users/Jeffrey/Downloads/rhdfs_1.0.8.zip", repos = NULL,type="binary")
+install.packages("./rhdfs_1.0.8.zip", repos = NULL,type="binary")
 Sys.setenv("HADOOP_CMD"="/usr/local/hadoop/bin/hadoop")
 Sys.setenv("HADOOP_STREAMING"="/usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.4.0.jar")
 

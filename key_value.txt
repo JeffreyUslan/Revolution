@@ -1,0 +1,22 @@
+key
+rgfksazfdeghk4rsfrgjgdh
+
+value
+afdhrkwszdfhsxfgjkdsttzdfh
+
+instance
+i-e11c5916 
+
+Public DNS
+ec2-52-24-71-16.us-west-2.compute.amazonaws.com
+
+louis aslett AMI
+ami-a9596d99
+
+rstudio username:
+rstudio
+rstudio pswd:
+Saiha123
+
+
+
