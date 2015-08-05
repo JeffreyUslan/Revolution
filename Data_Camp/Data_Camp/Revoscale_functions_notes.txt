@@ -1,0 +1,110 @@
+
+
+
+#########Data Handling
+
+# Declare the file paths for the csv and xdf files
+sampleDataDir <-rxGetOption("sampleDataDir")
+myAirlineCsv <- file.path(sampleDataDir, "2007_subset.csv")
+myAirlineXdf <- "2007_subset.xdf"
+
+# Use rxImport to import the data into xdf format
+rxImport(inData = myAirlineCsv, outFile = myAirlineXdf, overwrite = TRUE)
+
+
+# Get basic information about your data
+rxGetInfo(data = myAirlineXdf, 
+          getVarInfo = TRUE,
+          numRows  = 10)
+rxGetVarInfo(myAirlineXdf)
+## Calculate an additional variable: airspeed (distance traveled / time in the air). 
+rxDataStep(inData = myAirlineXdf, 
+         outFile = myAirlineXdf, 
+         varsToKeep = c("AirTime", "Distance"),
+	       transforms = list(airSpeed = AirTime / Distance),
+         append = "rows",
+         overwrite = TRUE)
+
+		 
+## Create a function to compute the scaled variable
+scaleCS <- function(mylist){
+  mylist[["scaledCreditScore"]] <- (mylist[["creditScore"]] - myCenter) / myScale
+  return(mylist)
+}
+
+## Run it with rxDataStep
+myMortData <- "myMD.xdf"
+rxDataStep(inData = mortData, outFile = myMortData,
+           transformFunc = scaleCS,
+           transformObjects = list(myCenter = meanCS, myScale = sdCS)
+           )
+		 
+#################Environment options
+## extract the names of the possible options:
+names(rxOptions())
+
+## extract the sample data directory:
+rxGetOption("sampleDataDir")
+
+## set the value of the reportProgress option to 0
+rxOptions(reportProgress = 0)
+
+
+#################Data Summaries		 
+		 
+## Summarize the variables corresponding to actual elapsed time, time in the air, departure delay, flight Distance.
+rxSummary(formula = ~ ActualElapsedTime + AirTime + DepDelay + Distance, 
+          data  = myAirlineXdf)
+	
+# Correlation for departure delay, arrival delay, and air speed
+rxCor(formula = ~ DepDelay + ArrDelay + airSpeed,
+      data = myAirlineXdf,
+      rowSelection = (airSpeed > 50) & (airSpeed < 800))			
+
+	  
+## Compute the the summed volume for each day of the week:
+rxCrossTabs(formula = Volume ~ DayOfWeek, data = djiXdf)
+rxCube(formula = Volume ~ DayOfWeek, data = djiXdf, means = FALSE)
+
+
+	  
+##################Visual Exploration	  
+	  
+# Histogram of departure delays
+rxHistogram(formula = ~DepDelay, 
+            data = myAirlineXdf)
+		 
+## Using different panels for different days of the week:
+rxLinePlot(Close ~ DaysSince1928 | DayOfWeek, data = djiXdf)
+
+
+##################Modeling
+	  
+# Regression for airSpeed based on departure delay
+myLMobj <- rxLinMod(formula = airSpeed ~ DepDelay, 
+         data = myAirlineXdf,
+         rowSelection = (airSpeed > 50) & (airSpeed < 800))
+summary(myLMobj)
+
+rxPredict(modelObject = myLM2, data = myAirlineXdf, outData = myAirlineXdf2, computeResiduals = TRUE,writeModelVars =TRUE, overwrite = TRUE)
+
+logitModel <- rxLogit(formula = default ~ houseAge + F(year) + ccDebt + creditScore + yearsEmploy, 
+                       data = mortData )
+
+KMout <- rxKmeans(formula = ~ ccDebt + creditScore + houseAge, 
+         data = mortData,
+         outFile = myNewMortData,
+         rowSelection = year == 2000,
+         numClusters  = 4,
+         writeModelVars = TRUE)
+		 
+regTreeOut <- rxDTree(default ~ creditScore + ccDebt + yearsEmploy + houseAge ,
+                      rowSelection = year == 2000,
+                      data = mortData,
+                      maxdepth = 5)
+
+
+
+
+
+

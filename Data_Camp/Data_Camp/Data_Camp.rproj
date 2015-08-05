@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="RTarget" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ca6571af-a609-42c8-a05a-886c96c7de84}</ProjectGuid>
+    <AssemblyName>Data_Camp</AssemblyName>
+    <Name>Data_Camp</Name>
+    <RootNamespace>Data_Camp</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="ex10_rxSummary.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex11_rxHistogram.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex12_rxLinePlot.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex13_rxCrossTabs.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex14_rxCube.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex15_rxDataStep_Transform.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex17_Prep_Data_Analysis.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex16_transformFuncs.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex18_Prep_data_exploration.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex19_construct_linear_model.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex1_importing_data_rxImport.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex20_rxPredict.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex21_rxLogit.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex22_logit_predict.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex23_rxKmeans.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex24_rxDTree.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex2_Functions_for_summarizing.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex3_creating_new_vars_rxDataStep.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex4_transforming_vars_rxDataStep.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex5_Correlations.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex6_linear_regression.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex7_ReoScaleR_options.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex8_import_explore_dow_jones_data.R">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ex9_extract_meta_data_rxGetVarInfo.R">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <Target Name="RTarget">
+    <Message Text="Executing R script" />
+  </Target>
+</Project>
